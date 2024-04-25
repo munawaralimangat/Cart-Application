@@ -19,7 +19,7 @@ const NavBar = () => {
                     <div className="hidden md:block">
                         <div className="ml-auto flex items-baseline space-x-4">
                             <Link to="/" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</Link>
-                            <Link to="/" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Products</Link>
+                            <Link to="/products" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Products</Link>
                             <Link to="/cart" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Cart</Link>
                         </div>
                     </div>

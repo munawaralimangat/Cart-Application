@@ -1,8 +1,11 @@
 // NavBar.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+    const cartProducts = useSelector(state => state.cartSlice)
+    console.log(cartProducts)
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleNavbar = () => {
@@ -20,7 +23,7 @@ const NavBar = () => {
                         <div className="ml-auto flex items-baseline space-x-4">
                             <Link to="/" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</Link>
                             <Link to="/products" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Products</Link>
-                            <Link to="/cart" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Cart</Link>
+                            <Link to="/cart" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Cart - {cartProducts.length}</Link>
                         </div>
                     </div>
                     <div className="-mr-2 flex md:hidden">

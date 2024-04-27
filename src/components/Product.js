@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import { Card } from "flowbite-react";
 import { setProducts } from '../features/productSlice';
+import { addToCart } from '../features/cartSlice';
 
 const Product = () => {
     const [products, setProducts] = useState([]);
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     // const productss = useSelector(state => state.products.items)
     
     useEffect(() => {
@@ -15,6 +16,10 @@ const Product = () => {
             .catch(error => console.error('Error fetching products:', error));
     }, []);
 
+    const handleAddToCart = (product)=>{
+       dispatch(addToCart(product))
+    }
+    
     const cards = products.map(product => (
         
         <div key={product.id} className='sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-8'>
@@ -30,12 +35,12 @@ const Product = () => {
                     {/* </a> */}
                     <div className="flex items-center justify-between mt-4">
                         <span className="text-3xl font-bold text-gray-900 dark:text-white">₹{product.price}</span>
-                        <a href='/addToCart'
-                            
+                        <span
+                            onClick={()=>handleAddToCart(product)}
                             className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
                         >
                             Add to cart
-                        </a>
+                        </span>
                     </div>
                 </div>
             </Card>

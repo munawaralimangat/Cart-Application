@@ -1,25 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import { Card } from "flowbite-react";
-import { setProducts } from '../features/productSlice';
 import { addToCart } from '../features/cartSlice';
+import  {getProducts} from '../features/productSlice';
 
 const Product = () => {
-    const [products, setProducts] = useState([]);
     const dispatch = useDispatch()
-    // const productss = useSelector(state => state.products.items)
+    const products = useSelector(state => state.productSlice.data)
     
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
-            .then(response => response.json())
-            .then(data => setProducts(data))
-            .catch(error => console.error('Error fetching products:', error));
-    }, []);
+        dispatch(getProducts())
+        // fetch('https://fakestoreapi.com/products')
+        //     .then(response => response.json())
+        //     .then(data => setProducts(data))
+        //     .catch(error => console.error('Error fetching products:', error));
+    }, [dispatch]);
 
     const handleAddToCart = (product)=>{
        dispatch(addToCart(product))
     }
-    
+
     const cards = products.map(product => (
         
         <div key={product.id} className='sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-8'>
